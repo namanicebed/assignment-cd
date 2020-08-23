@@ -78,6 +78,9 @@ const Home = () => {
   }
 
   if (home.data) {
+    return <ForcastScreen />;
+  }
+  if (home.error) {
     return <ErrorScreen getLocation={() => getLocationAsync()} />;
   }
   return <Loader />;
