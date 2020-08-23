@@ -27,7 +27,10 @@ export const fetchWeatherData = (lon, lat) => async (dispatch) => {
     dispatch({
       type: HOME_ACTION_TYPES.GET_DATA_SUCCESS,
       payload: {
-        todayTemp: currentTemp.data.main.temp,
+        todayData: {
+          temp: currentTemp.data.main.temp,
+          city: currentTemp.data.name,
+        },
         nextFiveDayTemp,
       },
     });
