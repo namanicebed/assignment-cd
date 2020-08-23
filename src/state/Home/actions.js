@@ -1,6 +1,13 @@
 import {HOME_ACTION_TYPES} from '../types';
+import api from '../../api';
 
-export const fetchWeatherData = () => (dispatch) => {
+export const fetchWeatherData = (lon, lat) => async (dispatch) => {
   try {
-  } catch (error) {}
+    dispatch({type: HOME_ACTION_TYPES.GET_DATA_ASYNC});
+    const response = await api.get()
+    
+  } catch (error) {
+    console.log(error);
+    dispatch({type: HOME_ACTION_TYPES.GET_DATA_ERROR});
+  }
 };
