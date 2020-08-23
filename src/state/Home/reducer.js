@@ -13,6 +13,8 @@ export default home = (state = initialState, action) => {
       return {
         ...newState,
         loading: true,
+        data: null,
+        error: false,
       };
     case HOME_ACTION_TYPES.GET_DATA_SUCCESS:
       return {

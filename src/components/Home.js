@@ -5,18 +5,24 @@ import Loader from '../common/Loader';
 import {fetchWeatherData} from '../state/Home/actions';
 import Geolocation from '@react-native-community/geolocation';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
+import ForcastScreen from './ForcastScreen';
+import ErrorScreen from './ErrorScreen';
 
 const Home = () => {
   const dispatch = useDispatch();
   const home = useSelector((state) => state.home);
 
   useEffect(() => {
+    getLocationAsync();
+  }, []);
+
+  function getLocationAsync() {
     if (Platform.OS == 'android') {
       askPermission();
     } else {
       locationData();
     }
-  }, []);
+  }
 
   function askPermission() {
     RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
@@ -71,21 +77,9 @@ const Home = () => {
     );
   }
 
-  if (!home.loading) {
-    return <View style={{flex: 1}}>
-      
-    </View>;
+  if (home.data) {
+    return <ErrorScreen getLocation={() => getLocationAsync()} />;
   }
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-      }}>
-      <Loader />
-    </View>
-  );
+  return <Loader />;
 };
 export default Home;
