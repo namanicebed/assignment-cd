@@ -8,8 +8,11 @@ const ForcastScreen = () => {
   const home = useSelector((state) => state.home);
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Hello World</Text>
+    <View style={{flex: 1}}>
+      <View style={{flex:0.6}}>
+        
+      </View>
+      <View style={{flex:0.4}}></View>
     </View>
   );
 };
